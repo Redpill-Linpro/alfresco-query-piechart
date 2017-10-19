@@ -1,0 +1,9 @@
+*.log*
+/bin/
+alf_data_dev
+target
+.settings
+.project
+.classpath
+${tomcat.home}
+*.log
