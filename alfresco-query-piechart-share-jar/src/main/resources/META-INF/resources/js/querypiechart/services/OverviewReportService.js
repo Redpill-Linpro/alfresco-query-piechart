@@ -37,7 +37,7 @@ define(["dojo/_base/declare",
              */
             constructor: function alfresco_services_OverviewReportService__constructor(args) {
                lang.mixin(this, args);
-               this.alfSubscribe("VGRMA_OVERVIEW_REPORT", lang.hitch(this, this.getVgrmaOverviewReport));
+               this.alfSubscribe("OVERVIEW_REPORT", lang.hitch(this, this.getOverviewReport));
             },
 
             /**
@@ -45,14 +45,14 @@ define(["dojo/_base/declare",
              * @instance
              * @param {object} payload The details of the request
              */
-            getVgrmaOverviewReport: function alfresco_services_ReportService__getVgrmaOverviewReport(payload) {
-               var alfTopic = (payload.alfResponseTopic != null) ? payload.alfResponseTopic : "VGRMA_OVERVIEW_REPORT";
+            getOverviewReport: function alfresco_services_ReportService__getOverviewReport(payload) {
+               var alfTopic = (payload.alfResponseTopic != null) ? payload.alfResponseTopic : "OVERVIEW_REPORT";
                var url = AlfConstants.PROXY_URI + "overview";
                var selectedWorkflow;
                if (payload.selectedWorkflow)
                {
                   selectedWorkflow = payload.selectedWorkflow;
-            	  console.log("getVgrmaOverviewReport, selectedWorkflow: " + selectedWorkflow);
+            	  console.log("getOverviewReport, selectedWorkflow: " + selectedWorkflow);
                }
 
                var data = {
@@ -63,7 +63,7 @@ define(["dojo/_base/declare",
                };
 
                switch (selectedWorkflow) {
-               case 'default':
+               case 'users':
                    data.queries.push({query: I18nUtils.msg(i18nScope, "overview.dashlet.piechart.query.properties.s1.value")});
                    break;
                }
@@ -73,13 +73,13 @@ define(["dojo/_base/declare",
                   url: url,
                   data: data,
                   method: "POST",
-                  successCallback: this.publishVgrmaOverviewReport,
+                  successCallback: this.publishOverviewReport,
                   callbackScope: this
                };
                this.serviceXhr(config);
             },
 
-            publishVgrmaOverviewReport: function alfresco_services_ReportService__publishVgrmaOverviewReport(response, requestConfig) {
+            publishOverviewReport: function alfresco_services_ReportService__publishOverviewReport(response, requestConfig) {
                this.alfPublish(requestConfig.alfTopic + "_SUCCESS", {
                   requestConfig: requestConfig,
                   response: {

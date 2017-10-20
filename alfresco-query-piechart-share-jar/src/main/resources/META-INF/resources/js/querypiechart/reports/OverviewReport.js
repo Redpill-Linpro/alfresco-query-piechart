@@ -75,7 +75,7 @@ define(["dojo/_base/declare",
                                            fixed: [
                                               {
                                                  label: I18nUtils.msg(i18nScope, "PiechartStatus"),
-                                                 value: "default"
+                                                 value: "users"
                                               }
                                            ]
                                         }
@@ -91,7 +91,7 @@ define(["dojo/_base/declare",
                    {
                       name: "alfresco/charts/ccc/ChartsView",
                       config: {
-                    	 dataRequestTopic: "VGRMA_OVERVIEW_REPORT",
+                    	 dataRequestTopic: "OVERVIEW_REPORT",
                     	 dataRequestPayload: {
                             site: Alfresco.constants.SITE, 
                             selectedWorkflow: selectedWorkflow

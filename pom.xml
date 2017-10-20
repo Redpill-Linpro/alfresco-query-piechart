@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.redpill-linpro.alfresco.query-piechart</groupId>
     <artifactId>alfresco-query-piechart</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>AIO - SDK 3.0</name>
-    <description>All-In-One (AIO) project for SDK 3.0</description>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Alfresco Query Piechart</name>
+    <description>Piechart dashlet module based on queries</description>
     <packaging>pom</packaging>
     <parent>
         <groupId>com.redpill-linpro.alfresco</groupId>
@@ -37,11 +37,11 @@
         <!-- Alfresco Platform and Share webapp versions, these are the original Alfresco webapps that will be
              customized and then deployed and run by the tomcat maven plugin when
              executing for example $ mvn clean install alfresco:run -->
-        <alfresco.platform.version>5.2.0</alfresco.platform.version>
-        <alfresco.share.version>5.2.0</alfresco.share.version>
+        <alfresco.platform.version>5.2.e</alfresco.platform.version>
+        <alfresco.share.version>5.2.e</alfresco.share.version>
 
         <!-- Default is to run with a Community edition, change to 'enterprise' if using Enterprise edition -->
-        <maven.alfresco.edition>enterprise</maven.alfresco.edition>
+        <maven.alfresco.edition>community</maven.alfresco.edition>
 
         <!-- Alfresco Surf version, if you change Share version you might need to change Surf version -->
         <alfresco.surf.version>6.11</alfresco.surf.version>
@@ -373,6 +373,35 @@
                     -->
                     <alwaysGenerate>true</alwaysGenerate>
                 </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-source-plugin</artifactId>
+              <version>3.0.1</version>
+              <executions>
+                <execution>
+                  <id>attach-sources</id>
+                  <goals>
+                    <goal>jar</goal>
+                  </goals>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-javadoc-plugin</artifactId>
+              <version>2.10.4</version>
+              <executions>
+                <execution>
+                  <id>attach-javadocs</id>
+                  <goals>
+                    <goal>jar</goal>
+                  </goals>
+                </execution>
+              </executions>
+              <configuration>
+                <quiet>true</quiet>
+              </configuration>
             </plugin>
         </plugins>
     </build>

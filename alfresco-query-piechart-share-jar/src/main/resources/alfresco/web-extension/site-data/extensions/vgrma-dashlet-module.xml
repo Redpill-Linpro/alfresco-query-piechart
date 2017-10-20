@@ -1,7 +1,7 @@
 <extension>
     <modules>
         <module>
-          <id>VGRMA Add overview Dashlets and widgets</id>
+          <id>Add overview Dashlets and widgets</id>
           <auto-deploy>true</auto-deploy>
           <version>${project.version}</version>
           <configurations>
