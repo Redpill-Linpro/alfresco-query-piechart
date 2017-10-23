@@ -1,0 +1,20 @@
+<extension>
+    <modules>
+        <module>
+          <id>Add overview Dashlets and widgets</id>
+          <auto-deploy>true</auto-deploy>
+          <version>${project.version}</version>
+          <configurations>
+              <config evaluator="string-compare" condition="WebFramework" replace="false">
+                  <web-framework>
+                      <dojo-pages>
+                          <packages>
+                              <package name="querypiechart" location="js/querypiechart"/>
+                          </packages>
+                      </dojo-pages>
+                  </web-framework>
+              </config>
+          </configurations>
+        </module>
+    </modules>
+</extension>

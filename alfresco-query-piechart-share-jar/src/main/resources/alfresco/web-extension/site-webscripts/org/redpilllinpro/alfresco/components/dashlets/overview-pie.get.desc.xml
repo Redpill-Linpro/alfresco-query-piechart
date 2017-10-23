@@ -1,0 +1,6 @@
+<webscript>
+   <shortname>IngestStatus</shortname>
+   <description></description>
+   <family>dashlet</family>
+   <url>/components/dashlets/overview-pie</url>
+</webscript>

@@ -1,0 +1,9 @@
+<webscript>
+  <shortname>Query data</shortname>
+  <description>Get Query data for pie chart</description>
+  <url>/querydata</url>
+  <format default="json">argument</format>
+  <authentication>user</authentication>
+  <transaction allow="readonly">required</transaction>
+  <family>RlArchive</family>
+</webscript>
