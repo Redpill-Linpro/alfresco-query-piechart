@@ -47,7 +47,7 @@ define(["dojo/_base/declare",
              */
             getOverviewReport: function alfresco_services_ReportService__getOverviewReport(payload) {
                var alfTopic = (payload.alfResponseTopic != null) ? payload.alfResponseTopic : "OVERVIEW_REPORT";
-               var url = AlfConstants.PROXY_URI + "overview";
+               var url = AlfConstants.PROXY_URI + "querydata";
                var selectedWorkflow;
                if (payload.selectedWorkflow)
                {
