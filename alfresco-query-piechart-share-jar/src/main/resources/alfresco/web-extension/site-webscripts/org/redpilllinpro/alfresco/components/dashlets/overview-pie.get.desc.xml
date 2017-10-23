@@ -1,5 +1,5 @@
 <webscript>
-   <shortname>IngestStatus</shortname>
+   <shortname>UserPiechartDashlet</shortname>
    <description></description>
    <family>dashlet</family>
    <url>/components/dashlets/overview-pie</url>
