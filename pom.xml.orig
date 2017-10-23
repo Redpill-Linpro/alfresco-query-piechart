@@ -3,7 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.redpill-linpro.alfresco.query-piechart</groupId>
     <artifactId>alfresco-query-piechart</artifactId>
+<<<<<<< HEAD
     <version>1.1.0-SNAPSHOT</version>
+=======
+    <version>1.0.1</version>
+>>>>>>> 1.0.1
     <name>Alfresco Query Piechart</name>
     <description>Piechart dashlet module based on queries</description>
     <packaging>pom</packaging>
