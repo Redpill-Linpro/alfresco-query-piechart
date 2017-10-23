@@ -5,7 +5,7 @@
     <artifactId>alfresco-query-piechart-share-jar</artifactId>
     <name>Alfresco Query Piechart - Share JAR Module</name>
     <packaging>jar</packaging>
-    <description></description>
+    <description>Alfresco Query Piechart - Share</description>
 
     <parent>
         <groupId>org.redpill-linpro.alfresco.query-piechart</groupId>
