@@ -11,7 +11,7 @@ define(["dojo/_base/declare",
    "alfresco/reports/Report",
    "dojo/_base/lang"],
       function(declare, AlfCore, I18nUtils, Report, lang) {
-	     var selectedWorkflow = "default";
+	     var selectedWorkflow = "users";
 	     
          var i18nScope = "querypiechart.reports.OverviewReport";
 
@@ -70,11 +70,10 @@ define(["dojo/_base/declare",
                                         name: "selectedWorkflow",
                                         value: selectedWorkflow,
                                         label: "",
-                                        description: I18nUtils.msg(i18nScope, "selectedWorkflow"),
                                         optionsConfig: {
                                            fixed: [
                                               {
-                                                 label: I18nUtils.msg(i18nScope, "PiechartStatus"),
+                                                 label: I18nUtils.msg(i18nScope, "Users"),
                                                  value: "users"
                                               }
                                            ]
