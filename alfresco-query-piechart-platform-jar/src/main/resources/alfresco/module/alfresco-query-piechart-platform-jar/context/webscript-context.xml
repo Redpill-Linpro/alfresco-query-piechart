@@ -23,9 +23,7 @@
           class="org.redpilllinpro.alfresco.querypiechart.webscripts.GetPipelineOverviewData" 
           parent="webscript">
     <property name="searchService" ref="SearchService" />
-    <property name="siteService" ref="SiteService" />
     <property name="cacheTimeoutInMS" value="${cache.timeout.ms}" />
-    <property name="nodeService" ref="NodeService" />
     <property name="globalProperties" ref="global-properties"/>
   </bean>
 </beans>

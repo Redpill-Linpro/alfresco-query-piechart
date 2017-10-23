@@ -9,12 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.alfresco.service.cmr.repository.NodeRef;
-import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.cmr.repository.StoreRef;
 import org.alfresco.service.cmr.search.ResultSet;
 import org.alfresco.service.cmr.search.SearchParameters;
 import org.alfresco.service.cmr.search.SearchService;
-import org.alfresco.service.cmr.site.SiteService;
 import org.alfresco.util.ExpiringValueCache;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -27,39 +25,28 @@ import org.springframework.extensions.webscripts.Status;
 import org.springframework.extensions.webscripts.WebScriptException;
 import org.springframework.extensions.webscripts.WebScriptRequest;
 import java.util.Properties;
-import org.springframework.extensions.surf.util.I18NUtil;
 
 public class GetPipelineOverviewData extends DeclarativeWebScript {
 
-  private static Logger LOG = Logger.getLogger(GetPipelineOverviewData.class);
+  private static final Logger LOG = Logger.getLogger(GetPipelineOverviewData.class);
 
   private SearchService searchService;
-  private SiteService siteService;
-  private NodeService nodeService;
   private Long cacheTimeoutInMS = 120000L;
   private Properties globalProperties;
 
   public static enum dashletTypes {
     querydata
   }
-  private String dashletType;
-  private String site;
 
   public void setSearchService(SearchService searchService) {
     this.searchService = searchService;
   }
 
-  public void setSiteService(SiteService siteService) {
-    this.siteService = siteService;
-  }
 
   public void setCacheTimeoutInMS(Long cacheTimeoutInMS) {
     this.cacheTimeoutInMS = cacheTimeoutInMS;
   }
 
-  public void setNodeService(NodeService nodeService) {
-    this.nodeService = nodeService;
-  }
 
   public void setGlobalProperties(Properties globalProperties) {
     this.globalProperties = globalProperties;
@@ -74,7 +61,8 @@ public class GetPipelineOverviewData extends DeclarativeWebScript {
     JSONArray queriesProperty = null;
 
     List<Map<String, Serializable>> stats;
-
+       String dashletType;
+       String site;
     try {
       JSONObject json = new JSONObject(new JSONTokener(req.getContent().getContent()));
       dashletType = json.getString("dashletType");
@@ -94,20 +82,18 @@ public class GetPipelineOverviewData extends DeclarativeWebScript {
       }
       List<String> queries = new ArrayList<>();
       List<String> labels = new ArrayList<>();
-      int labelStartIndex = 3;
-      for(String prop : props){
+      for (String prop : props) {
         queries.add((String) globalProperties.get(prop));
-        String label = (String) globalProperties.get(prop+".label");
+        String label = (String) globalProperties.get(prop + ".label");
         labels.add(label);
-        labelStartIndex++;
       }
 
       if (labels.size() != queries.size()) {
         throw new WebScriptException(Status.STATUS_INTERNAL_SERVER_ERROR, "Labels and queries should be of the same amount");
       }
-      
+
       stats = generateStats(labels, queries);
-      
+
     } catch (JSONException e) {
       throw new WebScriptException(Status.STATUS_INTERNAL_SERVER_ERROR, "Could not generate a result", e);
     } catch (IOException e) {
@@ -135,7 +121,7 @@ public class GetPipelineOverviewData extends DeclarativeWebScript {
     int count = 0;
 
     if (null == cachedSavedSearches.get()) {
-      cachedSavedSearches.put(new HashMap<String, Integer>(1));
+      cachedSavedSearches.put(new HashMap<>(1));
       LOG.debug("------>>> Cache was not initialized");
     }
 
@@ -163,13 +149,13 @@ public class GetPipelineOverviewData extends DeclarativeWebScript {
       }
     }
 
-    cachedSavedSearches.get().put(query, new Integer(count));
+    cachedSavedSearches.get().put(query, count);
 
     return count;
   }
 
   private Map<String, Serializable> createItem(String name, int value) {
-    Map<String, Serializable> item = new HashMap<String, Serializable>();
+    Map<String, Serializable> item = new HashMap<>();
     item.put("name", name);
     item.put("sum", value);
     item.put("count", value);
@@ -181,7 +167,7 @@ public class GetPipelineOverviewData extends DeclarativeWebScript {
   }
 
   private Map<String, Serializable> generateResult() {
-    Map<String, Serializable> result = new HashMap<String, Serializable>();
+    Map<String, Serializable> result = new HashMap<>();
     result.put("numberFound", 10);
     result.put("sum", 15);
     result.put("count", 20);
